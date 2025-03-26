@@ -97,7 +97,7 @@ size = Vector3(3.17749, 0.969193, 3.52155)
 material = SubResource("StandardMaterial3D_tlwt5")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3339, 1.6757, -6.62058)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3765, 1.6757, -6.62292)
 use_collision = true
 size = Vector3(3.17749, 0.484207, 3.52155)
 material = SubResource("StandardMaterial3D_tlwt5")

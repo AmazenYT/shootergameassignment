@@ -16,6 +16,7 @@ const FOV_CHANGE = 1.5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var gun_anim = $Head/Rifle/AnimationPlayer
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -60,6 +61,11 @@ func _physics_process(delta: float) -> void:
 	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
+	
+	if Input.is_action_pressed("shoot"):
+		if !gun_anim.is_playing():
+			gun_anim.play("Shoot")
+	
 	move_and_slide()
 
 func _headbob(time) -> Vector3:

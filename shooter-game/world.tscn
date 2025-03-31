@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://s8to8ulyik6f"]
+[gd_scene load_steps=8 format=3 uid="uid://s8to8ulyik6f"]
 
-[ext_resource type="Script" uid="uid://bj1e8r51twdy6" path="res://player.gd" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://bh6dgam0wqarv" path="res://player.tscn" id="1_f3sb7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,10 +17,6 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
 albedo_color = Color(0, 0.266666, 1, 0.988235)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f3sb7"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_036b0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
 albedo_color = Color(0.188107, 0.415012, 0.395596, 1)
@@ -43,22 +39,8 @@ use_collision = true
 size = Vector3(29.0709, 0.0517578, 26.0045)
 material = SubResource("StandardMaterial3D_f3sb7")
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08694, 0.50779, 0)
-script = ExtResource("1_f3sb7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-shape = SubResource("CapsuleShape3D_f3sb7")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/CollisionShape3D"]
-mesh = SubResource("CapsuleMesh_036b0")
-skeleton = NodePath("../..")
-
-[node name="Head" type="Node3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.348676, 0.284632, 0)
-
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
-transform = Transform3D(-0.0067718, 0, -0.999977, 0, 1, 0, 0.999977, 0, -0.0067718, 0.00139904, 0.540166, -0.00555694)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9273, 1.25117, -2.86412)

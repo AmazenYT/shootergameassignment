@@ -13,10 +13,14 @@ var t_bob = 0.0
 
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
+ 
+var bullet = load("res://bullet.tscn")
+var instance 
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 @onready var gun_anim = $Head/Rifle/AnimationPlayer
+@onready var gun_barrel = $Head/Rifle/RayCast3D
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -65,6 +69,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("shoot"):
 		if !gun_anim.is_playing():
 			gun_anim.play("Shoot")
+			instance = bullet.instantiate()
+			instance.position = gun_barrel.global_position
+			instance.transform.basis = gun_barrel.global_transform.basis
+			get_parent().add_child(instance)
 	
 	move_and_slide()
 

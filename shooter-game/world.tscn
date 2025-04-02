@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://s8to8ulyik6f"]
+[gd_scene load_steps=10 format=3 uid="uid://s8to8ulyik6f"]
 
 [ext_resource type="PackedScene" uid="uid://bh6dgam0wqarv" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://b134ikof64cq6" path="res://Enemy.tscn" id="2_fj7yv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,6 +18,8 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
 albedo_color = Color(0, 0.266666, 1, 0.988235)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_tlwt5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
 albedo_color = Color(0.188107, 0.415012, 0.395596, 1)
@@ -39,7 +42,10 @@ use_collision = true
 size = Vector3(29.0709, 0.0517578, 26.0045)
 material = SubResource("StandardMaterial3D_f3sb7")
 
-[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSGBox3D"]
+navigation_mesh = SubResource("NavigationMesh_tlwt5")
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08694, 0.50779, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
@@ -83,3 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3765, 1.6757, -6.62292)
 use_collision = true
 size = Vector3(3.17749, 0.484207, 3.52155)
 material = SubResource("StandardMaterial3D_tlwt5")
+
+[node name="Enemy" parent="." instance=ExtResource("2_fj7yv")]
+transform = Transform3D(-0.201693, 0, -0.979449, 0, 1, 0, 0.979449, 0, -0.201693, 13.2122, -0.370552, 5.45701)

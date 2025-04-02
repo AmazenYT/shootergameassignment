@@ -1,28 +1,37 @@
 extends CharacterBody3D
 
+@export var speed: float = 3.0  # Enemy movement speed
+@export var healed_speed: float = 5.0  # Speed after being healed
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
+var is_healed = false  # Tracks if the enemy has been "healed"
 
+@onready var player = get_tree().get_first_node_in_group("player")  # Finds the player
+@onready var nav_agent = $NavigationAgent3D  # Pathfinding agent
+@onready var anim = $AnimationPlayer  # Animation controller
+@onready var area = $Area3D  # Bullet detection area
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+func _ready():
+    area.body_entered.connect(_on_bullet_hit)  # Connects bullet detection
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+func _physics_process(delta):
+    if player:
+        nav_agent.target_position = player.global_transform.origin  # Set target to player
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+    if not is_healed:  # Enemy crawls normally
+        move_towards_target(delta, speed)
+    else:  # Moves faster when "healed"
+        move_towards_target(delta, healed_speed)
 
-	move_and_slide()
+func move_towards_target(delta, move_speed):
+    var next_path_position = nav_agent.get_next_path_position()
+    var direction = (next_path_position - global_transform.origin).normalized()
+    
+    velocity = direction * move_speed
+    move_and_slide()
+
+func _on_bullet_hit(body):
+    if body.is_in_group("bullet") and not is_healed:
+        is_healed = true  # Mark enemy as healed
+        anim.play("stand_up")  # Play stand-up animation
+        await anim.animation_finished  # Wait for the animation to finish
+        queue_free()  # Remove enemy after standing up

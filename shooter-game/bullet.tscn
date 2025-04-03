@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://14af2c7lhh2u"]
+[gd_scene load_steps=8 format=3 uid="uid://14af2c7lhh2u"]
 
 [ext_resource type="Script" uid="uid://jvj7pgwajr5u" path="res://bullet.gd" id="1_v7oki"]
 
@@ -25,6 +25,8 @@ initial_velocity_max = 5.0
 [sub_resource type="BoxMesh" id="BoxMesh_t4vbm"]
 size = Vector3(0.04, 0.04, 0.04)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_v7oki"]
+
 [node name="Bullet" type="Node3D" groups=["bullet"]]
 script = ExtResource("1_v7oki")
 
@@ -46,5 +48,10 @@ draw_pass_1 = SubResource("BoxMesh_t4vbm")
 wait_time = 10.0
 one_shot = true
 autostart = true
+
+[node name="Area3D" type="Area3D" parent="." groups=["bullet"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_v7oki")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

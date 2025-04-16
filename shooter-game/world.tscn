@@ -17,15 +17,13 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
-albedo_color = Color(0, 0.266666, 1, 0.988235)
+albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_tlwt5"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_fj7yv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
-albedo_color = Color(0.188107, 0.415012, 0.395596, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlwt5"]
-albedo_color = Color(0, 0, 0, 1)
+[sub_resource type="NavigationMesh" id="NavigationMesh_tlwt5"]
 
 [node name="World" type="Node3D"]
 
@@ -37,58 +35,49 @@ transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75
 shadow_enabled = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.58, -0.474121, -2.87493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.526, -0.710054, 1.58529)
 use_collision = true
-size = Vector3(29.0709, 0.0517578, 26.0045)
+size = Vector3(29.0709, 0.619174, 34.725)
 material = SubResource("StandardMaterial3D_f3sb7")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSGBox3D"]
-navigation_mesh = SubResource("NavigationMesh_tlwt5")
+navigation_mesh = SubResource("NavigationMesh_fj7yv")
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08694, 0.50779, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08694, 1.00522, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9273, 1.25117, -2.86412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92631, 5.24032, 1.50869)
 use_collision = true
-size = Vector3(0.312988, 3.35547, 25.6038)
+size = Vector3(0.312988, 11.395, 34.3496)
 material = SubResource("StandardMaterial3D_fj7yv")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9798, 1.25117, -2.86412)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.9798, 5.22174, 1.5503)
 use_collision = true
-size = Vector3(0.312988, 3.35547, 25.6038)
+size = Vector3(0.312988, 11.2966, 34.4326)
 material = SubResource("StandardMaterial3D_fj7yv")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.5723, 1.26019, 9.85625)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.6284, 5.26947, 18.6968)
 use_collision = true
-size = Vector3(0.312988, 3.35547, 29.1725)
+size = Vector3(0.312988, 11.291, 29.1725)
 material = SubResource("StandardMaterial3D_fj7yv")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.5723, 1.26019, -15.8186)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.5723, 5.23407, -15.8186)
 use_collision = true
-size = Vector3(0.312988, 3.35547, 29.1725)
+size = Vector3(0.312988, 11.3032, 29.1725)
 material = SubResource("StandardMaterial3D_fj7yv")
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.507, -0.00382972, -0.200464)
-use_collision = true
-size = Vector3(3.17749, 0.963333, 3.52155)
-material = SubResource("StandardMaterial3D_tlwt5")
-
 [node name="CSGBox3D7" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4818, 0.853387, -6.62058)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1674, 3.63889, -1.71668)
 use_collision = true
-size = Vector3(3.17749, 0.969193, 3.52155)
-material = SubResource("StandardMaterial3D_tlwt5")
+size = Vector3(29.0709, 0.619174, 34.725)
+material = SubResource("StandardMaterial3D_f3sb7")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3765, 1.6757, -6.62292)
-use_collision = true
-size = Vector3(3.17749, 0.484207, 3.52155)
-material = SubResource("StandardMaterial3D_tlwt5")
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSGBox3D7"]
+navigation_mesh = SubResource("NavigationMesh_tlwt5")
 
 [node name="Enemy" parent="." instance=ExtResource("2_fj7yv")]
-transform = Transform3D(-0.201693, 0, -0.979449, 0, 1, 0, 0.979449, 0, -0.201693, 13.2122, -0.370552, 5.45701)
+transform = Transform3D(-0.201693, 0, -0.979449, 0, 1, 0, 0.979449, 0, -0.201693, 13.2122, -0.194189, 5.45701)

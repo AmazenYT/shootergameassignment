@@ -20,21 +20,32 @@ func _physics_process(delta: float) -> void:
 	is_chasing = distance_to_player <= chase_distance
 	print("Distance to player:", distance_to_player, " | Chasing:", is_chasing)
 
-	if is_chasing:
-		nav_agent.set_target_position(player.global_transform.origin)
+	if player and is_chasing:
+		var player_pos = player.global_transform.origin
+		nav_agent.set_target_position(player_pos)  # <- proper function call
 
-		if not nav_agent.is_navigation_finished():
-			var current_speed = healed_speed if is_healed else speed
-			move_towards_target(delta, current_speed)
+	if not is_healed:
+		move_towards_target(delta, speed)
+	else:
+		move_towards_target(delta, healed_speed)
+
+
+	# 👇 This tells the nav agent what velocity we're applying (Godot 4.x way)
+	nav_agent.set_velocity(velocity)
+
+
+
+
+func move_towards_target(delta, move_speed):
+	if nav_agent.is_navigation_finished():
+		return
 	
-
-
-func move_towards_target(delta: float, move_speed: float) -> void:
 	var next_path_position = nav_agent.get_next_path_position()
 	var direction = (next_path_position - global_transform.origin).normalized()
-	print("Moving towards:", next_path_position)
+	
 	velocity = direction * move_speed
 	move_and_slide()
+
 
 
 func _on_area_3d_area_entered(area: Area3D) -> void:

@@ -16,14 +16,18 @@ sky = SubResource("Sky_tlwt5")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_fj7yv"]
+vertices = PackedVector3Array(-14.0354, 0.690413, -16.8625, -14.0354, 0.690413, 16.8875, 13.9646, 0.690413, 16.8875, 13.9646, 0.690413, -16.8625)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f3sb7"]
 albedo_color = Color(0.501961, 0.501961, 0.501961, 1)
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_fj7yv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj7yv"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_tlwt5"]
+vertices = PackedVector3Array(-14.0354, 0.690413, -16.8625, -14.0354, 0.690413, 16.8875, 13.9646, 0.690413, 16.8875, 13.9646, 0.690413, -16.8625)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [node name="World" type="Node3D"]
 
@@ -34,17 +38,17 @@ environment = SubResource("Environment_aqk2v")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.526, -0.710054, 1.58529)
+navigation_mesh = SubResource("NavigationMesh_fj7yv")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 use_collision = true
 size = Vector3(29.0709, 0.619174, 34.725)
 material = SubResource("StandardMaterial3D_f3sb7")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSGBox3D"]
-navigation_mesh = SubResource("NavigationMesh_fj7yv")
-
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_f3sb7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08694, 1.00522, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.08694, 0.57964, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92631, 5.24032, 1.50869)
@@ -70,14 +74,15 @@ use_collision = true
 size = Vector3(0.312988, 11.3032, 29.1725)
 material = SubResource("StandardMaterial3D_fj7yv")
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1674, 3.63889, -1.71668)
+[node name="NavigationRegion3D2" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1828, 3.63889, -1.71275)
+navigation_mesh = SubResource("NavigationMesh_tlwt5")
+navigation_layers = 2
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D2"]
 use_collision = true
 size = Vector3(29.0709, 0.619174, 34.725)
 material = SubResource("StandardMaterial3D_f3sb7")
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="CSGBox3D7"]
-navigation_mesh = SubResource("NavigationMesh_tlwt5")
-
 [node name="Enemy" parent="." instance=ExtResource("2_fj7yv")]
-transform = Transform3D(-0.201693, 0, -0.979449, 0, 1, 0, 0.979449, 0, -0.201693, 13.2122, -0.194189, 5.45701)
+transform = Transform3D(-0.201693, 0, -0.979449, 0, 1, 0, 0.979449, 0, -0.201693, 13.2122, -0.260736, 0.0145463)

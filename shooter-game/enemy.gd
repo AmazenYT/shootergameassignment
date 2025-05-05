@@ -18,22 +18,18 @@ func _physics_process(delta: float) -> void:
 
 	var distance_to_player = global_transform.origin.distance_to(player.global_transform.origin)
 	is_chasing = distance_to_player <= chase_distance
-	print("Distance to player:", distance_to_player, " | Chasing:", is_chasing)
+	
 
 	if player and is_chasing:
 		var player_pos = player.global_transform.origin
-		nav_agent.set_target_position(player_pos)  # <- proper function call
+		nav_agent.set_target_position(player_pos)
 
 	if not is_healed:
 		move_towards_target(delta, speed)
 	else:
 		move_towards_target(delta, healed_speed)
 
-
-	# 👇 This tells the nav agent what velocity we're applying (Godot 4.x way)
 	nav_agent.set_velocity(velocity)
-
-
 
 
 func move_towards_target(delta, move_speed):
@@ -47,11 +43,16 @@ func move_towards_target(delta, move_speed):
 	move_and_slide()
 
 
-
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.is_in_group("bullet") and not is_healed:
 		is_healed = true
 		anim.play("StandingUp(2)0")
 		is_chasing = false
 		await anim.animation_finished
+
+		# Notify the GameManager that this person has been healed
+		var game_manager = get_tree().get_first_node_in_group("game_manager")
+		if game_manager:
+			game_manager.person_healed()
+
 		queue_free()

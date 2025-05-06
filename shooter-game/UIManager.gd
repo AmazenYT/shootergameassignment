@@ -15,7 +15,7 @@ func _get_tween_node() -> Tween:
 func _ready():
 	# Initialize label properties
 	notification_label.modulate.a = 1.0
-	notification_label.rect_position = Vector2(10, 10)
+	notification_label.position = Vector2(10, 10)
 	notification_label.text = "People Healed 0/5"
 	
 	# Connect signals from enemies

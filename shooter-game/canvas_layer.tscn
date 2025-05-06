@@ -15,6 +15,7 @@ script = ExtResource("1_v2lfg")
 [node name="Tween" type="Node" parent="Control"]
 
 [node name="NotificationLabel" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 10.0
 offset_right = 50.0

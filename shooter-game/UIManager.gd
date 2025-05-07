@@ -16,12 +16,15 @@ func _ready():
 	# Initialize label properties
 	notification_label.modulate.a = 1.0
 	notification_label.position = Vector2(10, 10)
-	notification_label.text = "People Healed 0/5"
+	notification_label.text = "People Healed 0/%d" % max_people
 	
 	# Connect signals from enemies
 	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.healed_person.connect(_on_person_healed)
-	
+
 func _on_person_healed():
 	people_healed += 1
-	notification_label.text = "People Healed " + str(people_healed) + "/5"
+	notification_label.text = "People Healed %d/%d" % [people_healed, max_people]
+	
+	if people_healed >= max_people:
+		get_tree().change_scene_to_file("res://GameOverScreen.tscn")

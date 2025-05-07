@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://s8to8ulyik6f"]
+[gd_scene load_steps=28 format=4 uid="uid://s8to8ulyik6f"]
 
 [ext_resource type="PackedScene" uid="uid://bh6dgam0wqarv" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://b134ikof64cq6" path="res://Enemy.tscn" id="2_fj7yv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dghb5cj7s7lbt" path="res://hospital.glb" id="8_ioo17"]
 [ext_resource type="PackedScene" uid="uid://d3ys8we15f4i4" path="res://canvas_layer.tscn" id="9_ioo17"]
 [ext_resource type="PackedScene" uid="uid://c1h0pnq7cjh88" path="res://Sign Hospital/sign.glb" id="10_wse8f"]
+[ext_resource type="AudioStream" uid="uid://odh53ga76i5f" path="res://tartarus0d01.mp3" id="11_ic0uy"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -358,3 +359,7 @@ material = SubResource("StandardMaterial3D_ioo17")
 
 [node name="sign" parent="." instance=ExtResource("10_wse8f")]
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 26.752, -0.173996, 0.699755)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_ic0uy")
+autoplay = true

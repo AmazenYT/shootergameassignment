@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpmld4ah8qb7j"]
+
+[ext_resource type="AudioStream" uid="uid://odh53ga76i5f" path="res://tartarus0d01.mp3" id="1_m242i"]
+
+[node name="LevelMusic" type="AudioStreamPlayer3D"]
+stream = ExtResource("1_m242i")
+autoplay = true

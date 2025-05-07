@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://l4n2qp6a7s8j"]
+[gd_scene load_steps=3 format=3 uid="uid://l4n2qp6a7s8j"]
 
 [ext_resource type="Script" uid="uid://cefy35b0wxbs0" path="res://GameOverScreen.gd" id="1_6a6fq"]
+[ext_resource type="AudioStream" uid="uid://b08alvol0hgw8" path="res://Result - Sonic the Hedgehog [OST].mp3" id="2_gk5la"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -27,6 +28,7 @@ theme_override_font_sizes/font_size = 60
 text = "RESTART"
 
 [node name="QuitButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1306.0
 offset_top = 611.0
 offset_right = 1660.0
@@ -42,3 +44,7 @@ offset_right = 1376.0
 offset_bottom = 514.0
 theme_override_font_sizes/font_size = 90
 text = "THANKS FOR PLAYING"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_gk5la")
+autoplay = true
